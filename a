@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
@@ -19,7 +20,7 @@ __wbhack.init('https://web.archive.org/web');
 <link rel="stylesheet" href="https://web.archive.org/web/20161021061355cs_/http://stat.nic.ru/reports/css/style.css" type="text/css">
 <!--[if IE]><script language="javascript" type="text/javascript" src="http://stat.nic.ru/reports/flot/excanvas.min.js"></script><![endif]-->
 
-<script type="text/javascript" src="https://web.archive.org/web/20161021061355js_/http://stat.nic.ru/reports/yandex.share.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://web.archive.org/web/20161021061355js_/http://stat.nic.ru/reports/yandex.share.js" charset="utf-8"></script> 
 <script language="javascript" type="text/javascript" src="https://web.archive.org/web/20161021061355js_/http://stat.nic.ru/reports/flot/jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -31,7 +32,7 @@ $(document).ready(function(){
 		$(this).parent().parent().parent().find("#newon").animate({"width": "-=200px",opacity: "0.1"}, "fast");
 		$(this).parent().parent().parent().find("#newoff").animate({opacity: "1"}, "slow");
 	});
-
+	
 	$(".btn-slide").click(function(){
 		$(this).parent().parent().find("#newoff").animate({opacity: "0"}, "fast");
 		$(this).parent().parent().find("#newon").animate({"width": "+=200px",opacity: "1"}, "fast");
@@ -48,7 +49,7 @@ $(document).ready(function(){
 DOM = document.getElementById;
 Opera5 = window.opera && DOM;
 IE = document.all && !Opera5;
-if(!IE) document.write("<link rel='stylesheet' href='https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/css/all.css' type='text/css'>");
+if(!IE) document.write("<link rel='stylesheet' href='https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/css/all.css' type='text/css'>"); 
 </script>
 <!--[if lte IE 7 ]>
 <link rel='stylesheet' href='http://stat.nic.ru/reports/css/ie7.css' type='text/css'>
@@ -111,7 +112,7 @@ var colors = [
  { name: "RIPN-REG-%END%", color: "#f50420" },
  { name: "RTCOMM-REG-%END%", color: "#9d03b9" },
  { name: "RU-CENTER (всего)", color: "#2c74b5" },
-
+ 
  { name: "RUCENTER-REG-RIPN", color: "#afd8f8" },
  { name: "RUCENTER-REG-FID", color: "#f29400" },
  { name: "RUCENTER-REG-RF", color: "#f29400" },
@@ -170,7 +171,7 @@ var colors = [
  { name: "MANGYSHLAK.SU", color: "#c5b9ca" },
  { name: "MARINE.RU", color: "#74f0b8" },
  { name: "MORDOVIA.RU", color: "#c7cad3" },
- { name: "MORDOVIA.SU", color: "#2e642e" },
+ { name: "MORDOVIA.SU", color: "#2e642e" },	
  { name: "MSK.RU", color: "#f9bf98" },
  { name: "MSK.SU", color: "#f998b6" },
  { name: "MURMANSK.SU", color: "#ff8838" },
@@ -237,7 +238,7 @@ var colors = [
 { name: "Всего,зарубежные", color: "#f50420" },
 { name: "Всего ", color: "#313131" },
 { name: "Всего,российские", color: "#fdfa01" },
-
+ 
 
  { name: "MTW", color: "#ab8c2d" },
  { name: "Mchost", color: "#fb8686" },
@@ -258,7 +259,7 @@ var colors = [
  { name: "Rustelekom", color: "#e777ee" },
  { name: "Sprinthost", color: "#ccc47f" },
  { name: "Multihost", color: "#5e1c81" },
-
+ 
  { name: "Веб-узлы", color: "#313131" },
  { name: "Наличие одной из обнаруживаемых CMS", color: "#825009" },
  { name: "Joomla!", color: "#2c74b5" },
@@ -446,7 +447,7 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
 <div id="page">
 
 <div id="top">
-
+	
     <div id="title" style="margin-left:167px;"><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/">
           <div>Российский рынок доменов</div>
           <div id="title2">статистика, история, тенденции</div>
@@ -473,9 +474,9 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
 <div id="mainmenu" style="float:left">
 
 
-<ul id="hmenu" style="position:relative; z-index:100;">
+<ul id="hmenu" style="position:relative; z-index:100;"> 
 
-
+	
 	<li><a id="menu-rf" href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-rf/">РФ</a>
 		<ul>
 			<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-rf/all.html">Распределение доменов</a></li>
@@ -508,14 +509,14 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
 						<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-rf/hosting.html" class="menu3rd">Распределение доменов по хостингам</a></li>
 						<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-rf/transfer-hosting.html" class="menu3rd">Переход доменов к хостинг-провайдеру</a></li>
 						<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-rf/transfer-hosting-from.html" class="menu3rdbottom">Переход доменов из хостинг-провайдера</a></li>
-					</ul>
+					</ul> 
 				</li>
 			<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-rf/use.html" style="border-bottom: 1px solid #2c74b5;">Использование доменов</a></li>
 		</ul></li>
 	<li><a class="linkactive" href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-ru/">RU</a>
 		<ul>
 			<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-ru/all.html">Распределение доменов</a></li>
-
+            
 			<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-ru/newreg.html">Регистрация новых доменов</a></li>
 			<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-ru/rereg-index.html" class="menu2nd">Регистрация освобождающихся доменов</a>
 				<ul id="menu3rd">
@@ -544,7 +545,7 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
 					<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-ru/hosting.html" class="menu3rd">Распределение доменов по хостингам</a></li>
 					<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-ru/transfer-hosting.html" class="menu3rd">Переход доменов к хостинг-провайдеру</a></li>
 					<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-ru/transfer-hosting-from.html" class="menu3rdbottom">Переход доменов из хостинг-провайдера</a></li>
-				</ul>
+				</ul> 
 			</li>
 			<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-ru/cms-stat.html">Статистика CMS</a></li>
 			<li><a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/whist-ru/ssl-stat-tech.html">Общая статистика SSL</a></li>
@@ -620,11 +621,11 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
 <div style="float: right;">
 	<a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/csv/RU_newreg.csv" style="margin: 0 10px 0 0"><img src="https://web.archive.org/web/20161021061355im_/http://stat.nic.ru/reports/images/csv.gif" title="CSV" border="0"></a>
 
-	<a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/xls/RU_newreg.xls" style="margin: 0 20px 0 0;"><img src="https://web.archive.org/web/20161021061355im_/http://stat.nic.ru/reports/images/xls.gif" title="XLS" border="0"></a>
+	<a href="https://web.archive.org/web/20161021061355/http://stat.nic.ru/reports/xls/RU_newreg.xls" style="margin: 0 20px 0 0;"><img src="https://web.archive.org/web/20161021061355im_/http://stat.nic.ru/reports/images/xls.gif" title="XLS" border="0"></a> 
 </div>
 <div style="float: left;">
 <h2 class="report">
-
+  
 Регистрация новых доменов
 
 </h2>
@@ -634,7 +635,7 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
 
 
     <div>
-
+      
       <script language="javascript">
         changeViewAllowed = true;
       </script>
@@ -643,9 +644,9 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
         <a href="#" onclick="return ag(1,0);"><img src="https://web.archive.org/web/20161021061355im_/http://stat.nic.ru/reports/images/gistogram.gif" title="Гистограмма"></a>
 		<a href="#" onclick="return ag(1,1);"><img src="https://web.archive.org/web/20161021061355im_/http://stat.nic.ru/reports/images/gistogram100.gif" title="Гистограмма 100%"></a>
       </div>
-
+      
       <div style="float: left; margin-left: 20px; color: #424242;">
-      <p>OX: месяц<br/>OY:
+      <p>OX: месяц<br/>OY: 
   число доменов
 </p>
       </div>
@@ -655,7 +656,7 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
       </div>
       <div style="clear: both;"></div>
     </div>
-
+    
 <div>
    <div id="ad" style="width:920px;height:350px;margin-bottom: 10px;position:relative;z-index:50;">
     <noscript>
@@ -663,7 +664,7 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
     </noscript>
    </div>
 
-
+	
 	<div id="bar" title="Идет загрузка данных"><img src="https://web.archive.org/web/20161021061355im_/http://stat.nic.ru/reports/images/clock.gif" style="margin-top:100px;"></div>
 	<div id="bar2" title="Не введены данные"><p>&lt;EMPTY&gt;</p></div>
 </div>
@@ -671,6 +672,7 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
     <div style="float: left;">
       <div class="legend-style">
         <div id="permalink_div" style="margin-bottom: 5px;">
+          
 
 
 
@@ -678,15 +680,14 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
 
 
 
-
-
+          
         </div>
-
+        
         <div class="checkbox-control"><a href="#" onclick="return bi(1);">Отметить всё</a>&nbsp;&nbsp;
            <a href="#" onclick="return bi(0);">Убрать всё</a>&nbsp;&nbsp;
            <a href="#" onclick="return bi(-1);">Инвертировать</a>
         </div>
-
+        
         <div id="ab"></div>
       </div>
       <div class="report-desc">
@@ -702,7 +703,7 @@ __wm.bt(625,27,25,2,"web","http://stat.nic.ru/reports/whist-ru/newreg.html","201
         </div>
         <div style="clear: both;"></div>
       </div>
-    </div>
+    </div> 
     <div style="float: right;" id="shuf">
 	  <script type="text/javascript">
         var ad=document.getElementById('shuf');
