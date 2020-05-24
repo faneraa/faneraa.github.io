@@ -1,119 +1,259 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>график</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Live data from dynamic CSV</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script
+    type="text/javascript"
+    src="/js/lib/dummy.js"
+    
+  ></script>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+
+  <style id="compiled-css" type="text/css">
+      .highcharts-figure,
+.highcharts-data-table table {
+  min-width: 360px;
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #EBEBEB;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+
+.ld-label {
+  width: 200px;
+  display: inline-block;
+}
+
+.ld-url-input {
+  width: 500px;
+}
+
+.ld-time-input {
+  width: 40px;
+}
+
+  </style>
+
+  <script id="insert"></script>
+
+
+    <script>
+      const customConsole = (w) => {
+        const pushToConsole = (payload, type) => {
+          w.parent.postMessage({
+            console: {
+              payload: payload,
+              type:    type
+            }
+          }, "*")
+        }
+
+        w.onerror = (message, url, line, column) => {
+          // the line needs to correspond with the editor panel
+          // unfortunately this number needs to be altered every time this view is changed
+          line = line - 79
+          if (line < 0){
+            pushToConsole(message, "error")
+          } else {
+            pushToConsole(`[${line}:${column}] ${message}`, "error")
+          }
+        }
+
+        w.console = (function(){
+          return {
+            log: (payload) => {
+              pushToConsole(payload, "log")
+            },
+            info: (payload) => {
+              pushToConsole(payload, "info")
+            },
+            warn: (payload) => {
+              pushToConsole(payload, "warn")
+            },
+            error: (payload) => {
+              pushToConsole(payload, "error")
+            },
+            system: (payload) => {
+              pushToConsole(payload, "system")
+            }
+          }
+        }())
+
+        console.system("Running fiddle")
+      }
+
+      if (window.parent){
+        customConsole(window)
+      }
+    </script>
 </head>
 <body>
-<div class="chart-container">
-<a id="previous-example" class="hidden-xs" title="Previous (arrow left)" href="/demo/sonification"><i class="fa fa-angle-left"></i></a>
-
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 <figure class="highcharts-figure">
-    <div id="container" data-highcharts-chart="0" style="overflow: hidden;" role="region" aria-label="Live random data. Highcharts interactive chart." aria-hidden="false"><div id="highcharts-screen-reader-region-before-0" aria-label="Chart screen reader information." role="region" style="position: relative;" aria-hidden="false"><div aria-hidden="false" style="position: absolute; width: 1px; height: 1px; overflow: hidden; white-space: nowrap; clip: rect(1px, 1px, 1px, 1px); margin-top: -3px; opacity: 0.01;"><h5>Live random data</h5><div>Line chart with 20 data points.</div><div>
-        Chart showing data updating every second, with old data being removed.
-    </div><div><a id="hc-linkto-highcharts-data-table-0" role="button" tabindex="-1" aria-expanded="false" href="#highcharts-data-table-0">View as data table, Live random data</a></div><div>The chart has 1 X axis displaying Time. Range: 2020-05-24 17:24:03 to 2020-05-24 17:24:23.</div><div>The chart has 1 Y axis displaying Value. Range: 0 to 1.2.</div></div></div><div aria-hidden="false" aria-live="assertive" style="position: absolute; width: 1px; height: 1px; overflow: hidden; white-space: nowrap; clip: rect(1px, 1px, 1px, 1px); margin-top: -3px; opacity: 0.01;"></div><div aria-hidden="false" aria-live="polite" style="position: absolute; width: 1px; height: 1px; overflow: hidden; white-space: nowrap; clip: rect(1px, 1px, 1px, 1px); margin-top: -3px; opacity: 0.01;"></div><div id="highcharts-9ri6yhl-0" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 800px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" tabindex="0" aria-hidden="false"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400" aria-label="Interactive chart" aria-hidden="false"><desc aria-hidden="true">Created with Highcharts 8.1.0</desc><defs aria-hidden="true"><clipPath id="highcharts-9ri6yhl-1-"><rect x="0" y="0" width="720" height="310" fill="none"></rect></clipPath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="800" height="400" rx="0" ry="0" aria-hidden="true"></rect><rect fill="none" class="highcharts-plot-background" x="70" y="53" width="720" height="310" aria-hidden="true"></rect><g class="highcharts-plot-lines-0" data-z-index="0" aria-hidden="true"><path fill="none" class="highcharts-plot-line " stroke="#808080" stroke-width="1" d="M 70 363.5 L 790 363.5"></path></g><g class="highcharts-grid highcharts-xaxis-grid" data-z-index="1" aria-hidden="true"><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 122.69284180585096 53 L 122.69284180585096 363" opacity="1"></path><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 307.7099427223486 53 L 307.7099427223486 363" opacity="1"></path><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 492.7099427223486 53 L 492.7099427223486 363" opacity="1"></path><path fill="none" data-z-index="1" class="highcharts-grid-line" d="M 677.7099427223486 53 L 677.7099427223486 363" opacity="1"></path></g><g class="highcharts-grid highcharts-yaxis-grid" data-z-index="1" aria-hidden="true"><path fill="none" stroke="#e6e6e6" stroke-width="1" data-z-index="1" class="highcharts-grid-line" d="M 70 363.5 L 790 363.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" data-z-index="1" class="highcharts-grid-line" d="M 70 105.5 L 790 105.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" data-z-index="1" class="highcharts-grid-line" d="M 70 311.5 L 790 311.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" data-z-index="1" class="highcharts-grid-line" d="M 70 260.5 L 790 260.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" data-z-index="1" class="highcharts-grid-line" d="M 70 208.5 L 790 208.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" data-z-index="1" class="highcharts-grid-line" d="M 70 156.5 L 790 156.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" data-z-index="1" class="highcharts-grid-line" d="M 70 52.5 L 790 52.5" opacity="1"></path></g><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="70" y="53" width="720" height="310" aria-hidden="true"></rect><g class="highcharts-axis highcharts-xaxis" data-z-index="2" aria-hidden="true"><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 122.70994272234859 363 L 122.70994272234859 373" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 307.7099427223486 363 L 307.7099427223486 373" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 492.7099427223486 363 L 492.7099427223486 373" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="1" d="M 677.7099427223486 363 L 677.7099427223486 373" opacity="1"></path><path fill="none" class="highcharts-axis-line" stroke="#ccd6eb" stroke-width="1" data-z-index="7" d="M 70 363.5 L 790 363.5"></path></g><g class="highcharts-axis highcharts-yaxis" data-z-index="2" aria-hidden="true"><text x="25.59375" data-z-index="7" text-anchor="middle" transform="translate(0,0) rotate(270 25.59375 208)" class="highcharts-axis-title" style="color:#666666;fill:#666666;" y="208"><tspan>Value</tspan></text><path fill="none" class="highcharts-axis-line" data-z-index="7" d="M 70 53 L 70 363"></path></g><g class="highcharts-series-group" data-z-index="3" aria-hidden="false"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-spline-series highcharts-color-0" transform="translate(70,53) scale(1 1)" clip-path="url(https://www.highcharts.com/demo/dynamic-update#highcharts-9ri6yhl-1-)" aria-hidden="true"><path fill="none" d="M 7.058827774288479 106.17059157720573 C 7.058827774288479 106.17059157720573 7.1847465541544615 105.44628775980414 7.268692407398447 105.44628775980414 C 7.352638260642429 105.44628775980414 29.458122831688122 144.77980940671216 44.25107644788124 144.77980940671216 C 59.044030064074164 144.77980940671216 66.4405068721706 111.0177844568562 81.23346048836353 95.26687326017102 C 96.02641410455846 79.51596206348373 103.4228909126559 66.02525342328099 118.21584452885084 66.02525342328099 C 133.00879814504373 66.02525342328099 140.4052749531402 66.02525342328099 155.1982285693331 74.54938079220611 C 169.99118218552604 83.07350816113123 177.38765899362255 203.27749637352102 192.18061260981546 203.27749637352102 C 206.97356622600833 203.27749637352102 214.3700430341048 126.30586428987652 229.1629966502977 125.35339694298932 C 245.2133513238639 124.40092959610212 253.238528660647 124.40092959610212 269.28888333421315 124.40092959610212 C 284.0966299040224 124.40092959610212 291.500503188927 252.19356263979162 306.30824975873617 252.19356263979162 C 321.0864104213128 252.19356263979162 328.4754907526011 202.7073974748999 343.2536514151777 173.856281831564 C 358.0761909386032 144.91852620131064 365.487460700316 107.72138445581842 380.31000022374155 107.72138445581842 C 395.1029538399344 107.72138445581842 402.49943064803085 113.74533528127006 417.2923842642238 113.74533528127006 C 432.07054492680044 113.74533528127006 439.4596252580888 70.72177590667195 454.23778592066543 70.72177590667195 C 469.04553249047456 70.72177590667195 476.4494057753792 142.3929164846092 491.2571523451884 169.6492271481568 C 506.035313007765 196.85107964854 513.4243933390534 185.16209430171918 528.20255400163 206.867183816499 C 542.9807146642106 228.5722733312846 550.3697949955009 278.17467472207034 565.1479556580815 278.17467472207034 C 579.9557022278907 278.17467472207034 587.3595755127952 156.95844279819244 602.1673220826045 113.70560320758321 C 616.9454827451812 70.53918287689613 624.3345630764695 62.12652491882963 639.1127237390461 62.12652491882963 C 653.9056773552392 62.12652491882963 661.3861000165795 261.189655159782 676.0951077795283 261.189655159782 C 690.8335335580034 261.189655159782 712.941172225716 256.30959002676707 712.941172225716 256.30959002676707" class="highcharts-graph" data-z-index="1" stroke="#7cb5ec" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path><path fill="none" d="M 7.0588277783045 105.44628775980414 C 7.0588277783045 105.44628775980414 29.248245008148803 144.77980940671216 44.041189828045 144.77980940671216 C 58.834134647941006 144.77980940671216 66.23060705788899 111.0177844568562 81.023551877785 95.26687326017102 C 95.816496697683 79.51596206348373 103.21296910763199 66.02525342328099 118.00591392753 66.02525342328099 C 132.79885874742598 66.02525342328099 140.195331157374 66.02525342328099 154.98827597727 74.54938079220611 C 169.781220797166 83.07350816113123 177.17769320711403 203.27749637352102 191.97063802701 203.27749637352102 C 206.763582846906 203.27749637352102 214.160055256854 126.30586428987652 228.95300007675 125.35339694298932 C 245.00334520633402 124.40092959610212 253.02851777112602 124.40092959610212 269.07886290071 124.40092959610212 C 283.88660066542604 124.40092959610212 291.290469547784 252.19356263979162 306.0982073125 252.19356263979162 C 320.876359187576 252.19356263979162 328.265435125114 202.7073974748999 343.04358700019 173.856281831564 C 357.8661177097259 144.91852620131064 365.27738306449396 107.72138445581842 380.09991377403 107.72138445581842 C 394.89285859392595 107.72138445581842 402.28933100387394 113.74533528127006 417.08227582377 113.74533528127006 C 431.86042769884597 113.74533528127006 439.249503636384 70.72177590667195 454.02765551146 70.72177590667195 C 468.835393276176 70.72177590667195 476.23926215853396 142.3929164846092 491.04699992325 169.6492271481568 C 505.825151798326 196.85107964854 513.214227735864 185.1620943017192 527.99237961094 206.867183816499 C 542.77053148602 228.57227333128463 550.15960742356 278.17467472207034 564.93775929864 278.17467472207034 C 579.745497063356 278.17467472207034 587.149365945714 156.95844279819244 601.95710371043 113.70560320758321 C 616.735255585506 70.53918287689615 624.124331523044 62.12652491882963 638.90248339812 62.12652491882963 C 653.6954282180161 62.12652491882963 661.091900627964 261.189655159782 675.88484544786 261.189655159782 C 690.707376157396 261.189655159782 712.9411722217 256.281741900532 712.9411722217 256.281741900532" visibility="visible" data-z-index="2" class="highcharts-tracker-line" stroke-linecap="round" stroke-linejoin="round" stroke="rgba(192,192,192,0.0001)" stroke-width="22"></path></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-spline-series highcharts-color-0 highcharts-tracker" transform="translate(70,53) scale(1 1)" aria-hidden="false" aria-label=""><path fill="#7cb5ec" d="M 301 291.66149935771296 A 0 0 0 1 1 301 291.66149935771296 Z" class="highcharts-halo highcharts-color-0" data-z-index="-1" fill-opacity="0.25" visibility="hidden"></path><path fill="#7cb5ec" d="M 7.209942722348593 109.44628775980414 A 4 4 0 1 1 7.213942721681929 109.4462857598043 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="1. Sunday, May 24, 17:24:03.748, 0.7918208215749516." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 44.20994272234859 148.77980940671216 A 4 4 0 1 1 44.21394272168193 148.77980740671234 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="2. Sunday, May 24, 17:24:04.748, 0.6395620281030496." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 81.20994272234859 99.26687326017102 A 4 4 0 1 1 81.21394272168192 99.26687126017119 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="3. Sunday, May 24, 17:24:05.748, 0.8312250067348217." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 118.20994272234859 70.02525342328099 A 4 4 0 1 1 118.21394272168192 70.02525142328115 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="4. Sunday, May 24, 17:24:06.748, 0.9444183738453638." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 154.22776569898994 78.54938079220611 A 4 4 0 1 1 154.23176569832327 78.54937879220627 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="5. Sunday, May 24, 17:24:07.748, 0.9114217517721053." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 191.22776569898994 207.27749637352102 A 4 4 0 1 1 191.23176569832327 207.2774943735212 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="6. Sunday, May 24, 17:24:08.748, 0.41311936887669276." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 228.22776569898994 129.35339694298932 A 4 4 0 1 1 228.23176569832327 129.3533949429895 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="7. Sunday, May 24, 17:24:09.748, 0.7147610440916541." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 269.22776569898997 128.40092959610212 A 4 4 0 1 1 269.23176569832333 128.4009275961023 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="8. Sunday, May 24, 17:24:10.833, 0.7184480144667014." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 306.22776569898997 256.1935626397916 A 4 4 0 1 1 306.23176569832333 256.19356063979177 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="9. Sunday, May 24, 17:24:11.834, 0.2237668542975808." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 343.22776569898997 177.856281831564 A 4 4 0 1 1 343.23176569832333 177.85627983156417 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="10. Sunday, May 24, 17:24:12.833, 0.5270079412971715." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 380.22776569898997 111.72138445581842 A 4 4 0 1 1 380.23176569832333 111.72138245581858 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="11. Sunday, May 24, 17:24:13.835, 0.7830139956548963." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 417.22776569898997 117.74533528127006 A 4 4 0 1 1 417.23176569832333 117.74533328127022 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="12. Sunday, May 24, 17:24:14.835, 0.7596954763305674." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 454.24631003215444 74.72177590667195 A 4 4 0 1 1 454.2503100314878 74.72177390667211 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="13. Sunday, May 24, 17:24:15.834, 0.9262382868128827." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 491.24631003215444 173.6492271481568 A 4 4 0 1 1 491.2503100314878 173.64922514815697 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="14. Sunday, May 24, 17:24:16.835, 0.5432933142651994." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 527.2529670600505 210.867183816499 A 4 4 0 1 1 527.2569670593839 210.86718181649917 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="15. Sunday, May 24, 17:24:17.834, 0.39922380458129414." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 564.2463100321545 282.17467472207034 A 4 4 0 1 1 564.2503100314879 282.1746727220705 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="16. Sunday, May 24, 17:24:18.833, 0.12319480752746959." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 601.2529670600505 117.70560320758321 A 4 4 0 1 1 601.2569670593839 117.70560120758337 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="17. Sunday, May 24, 17:24:19.834, 0.7598492779061294." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 638.2463100321545 66.12652491882963 A 4 4 0 1 1 638.2503100314879 66.12652291882979 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="18. Sunday, May 24, 17:24:20.833, 0.9595102261206594." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 675.2463100321545 265.189655159782 A 4 4 0 1 1 675.2503100314879 265.18965315978215 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="19. Sunday, May 24, 17:24:21.833, 0.18894327034923108." style="outline: 0px;"></path><path fill="#7cb5ec" d="M 712 260 A 4 4 0 1 1 712.0039999993334 259.9999980000002 Z" opacity="1" class="highcharts-point highcharts-color-0" tabindex="-1" role="img" aria-label="20. Sunday, May 24, 17:24:22.835, 0.20794164425600514." style="outline: 0px;"></path></g></g><text x="400" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24" aria-hidden="true"><tspan>Live random data</tspan></text><text x="400" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52" aria-hidden="true"></text><text x="10" text-anchor="start" class="highcharts-caption" data-z-index="4" style="color:#666666;fill:#666666;" y="397" aria-hidden="true"></text><g class="highcharts-axis-labels highcharts-xaxis-labels" data-z-index="7" aria-hidden="true"><text x="123.57063722608328" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">17:24:05</text><text x="308.48255742849483" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">17:24:10</text><text x="493.3944776309063" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">17:24:15</text><text x="678.272874196187" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="382" opacity="1">17:24:20</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" data-z-index="7" aria-hidden="true"><text x="55" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="367" opacity="1">0</text><text x="55" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="109" opacity="1">1</text><text x="55" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="315" opacity="1">0.2</text><text x="55" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="264" opacity="1">0.4</text><text x="55" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="212" opacity="1">0.6</text><text x="55" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="160" opacity="1">0.8</text><text x="55" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="end" transform="translate(0,0)" y="57" opacity="1">1.2</text></g><text x="790" class="highcharts-credits" text-anchor="end" data-z-index="8" style="cursor:pointer;color:#999999;font-size:9px;fill:#999999;" y="395" aria-label="Chart credits: Highcharts.com" aria-hidden="false">Highcharts.com</text><g class="highcharts-label highcharts-tooltip      highcharts-color-0" style="white-space:nowrap;pointer-events:none;" data-z-index="8" transform="translate(304,-9999)" opacity="0" visibility="hidden" aria-hidden="true"><path fill="none" class="highcharts-label-box highcharts-tooltip-box highcharts-shadow" d="M 3.5 0.5 L 145.5 0.5 C 148.5 0.5 148.5 0.5 148.5 3.5 L 148.5 61.5 C 148.5 64.5 148.5 64.5 145.5 64.5 L 79.5 64.5 L 73.5 70.5 L 67.5 64.5 L 3.5 64.5 C 0.5 64.5 0.5 64.5 0.5 61.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#000000" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)"></path><path fill="none" class="highcharts-label-box highcharts-tooltip-box highcharts-shadow" d="M 3.5 0.5 L 145.5 0.5 C 148.5 0.5 148.5 0.5 148.5 3.5 L 148.5 61.5 C 148.5 64.5 148.5 64.5 145.5 64.5 L 79.5 64.5 L 73.5 70.5 L 67.5 64.5 L 3.5 64.5 C 0.5 64.5 0.5 64.5 0.5 61.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#000000" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)"></path><path fill="none" class="highcharts-label-box highcharts-tooltip-box highcharts-shadow" d="M 3.5 0.5 L 145.5 0.5 C 148.5 0.5 148.5 0.5 148.5 3.5 L 148.5 61.5 C 148.5 64.5 148.5 64.5 145.5 64.5 L 79.5 64.5 L 73.5 70.5 L 67.5 64.5 L 3.5 64.5 C 0.5 64.5 0.5 64.5 0.5 61.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#000000" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)"></path><path fill="rgba(247,247,247,0.85)" class="highcharts-label-box highcharts-tooltip-box" d="M 3.5 0.5 L 145.5 0.5 C 148.5 0.5 148.5 0.5 148.5 3.5 L 148.5 61.5 C 148.5 64.5 148.5 64.5 145.5 64.5 L 79.5 64.5 L 73.5 70.5 L 67.5 64.5 L 3.5 64.5 C 0.5 64.5 0.5 64.5 0.5 61.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="#7cb5ec" stroke-width="1"></path><text x="8" data-z-index="1" style="color:#333333;cursor:default;font-size:12px;fill:#333333;" y="20"><tspan style="font-weight:bold">Random data</tspan><tspan x="8" dy="15">2020-05-24 17:23:58</tspan><tspan x="8" dy="15">0.07</tspan></text></g></svg></div><div id="highcharts-screen-reader-region-after-0" aria-label="" style="position: relative;" aria-hidden="false"><div aria-hidden="false" style="position: absolute; width: 1px; height: 1px; overflow: hidden; white-space: nowrap; clip: rect(1px, 1px, 1px, 1px); margin-top: -3px; opacity: 0.01;"><div id="highcharts-end-of-chart-marker-0">End of interactive chart.</div></div></div></div>
-    <p class="highcharts-description highcharts-linked-description" aria-hidden="true">
-        Chart showing data updating every second, with old data being removed.
+    <div id="container"></div>
+    <p class="highcharts-description">
+		Datasets formatted in CSV or JSON can be fetched remotely using the
+		<code>data</code> module. This chart shows how a chart can also be
+		configured to poll against the remote source.
     </p>
 </figure>
-			<!--[if lt IE 9]>
-		   	<script src="https://code.highcharts.com/modules/oldie.js"></script>
-		    <![endif]-->
-						<script>
-				jQuery.noConflict();
-				var example = 'dynamic-update', 
-					theme = 'default';
-				(function($){ // encapsulate jQuery
-					Highcharts.chart('container', {
+
+<div class="ld-row">
+	<label class="ld-label">
+		Enable Polling
+	</label>
+	<input type="checkbox" checked="checked" id="enablePolling"/>
+</div>
+<div class="ld-row">
+	<label class="ld-label">
+		Polling Time (Seconds)
+	</label>
+	<input class="ld-time-input" type="number" value="2" id="pollingTime"/>
+</div>
+<div class="ld-row">
+	<label class="ld-label">
+		CSV URL
+	</label>
+	<input class="ld-url-input" type="text" id="fetchURL"/>
+</div>
+
+
+
+
+  <!-- TODO: Missing CoffeeScript 2 -->
+
+  <script type="text/javascript">//<![CDATA[
+
+
+var defaultData = 'https://demo-live-data.highcharts.com/time-data.csv';
+var urlInput = document.getElementById('fetchURL');
+var pollingCheckbox = document.getElementById('enablePolling');
+var pollingInput = document.getElementById('pollingTime');
+
+function createChart() {
+  Highcharts.chart('container', {
     chart: {
-        type: 'spline',
-        animation: Highcharts.svg, // don't animate in old IE
-        marginRight: 10,
-        events: {
-            load: function () {
-
-                // set up the updating of the chart each second
-                var series = this.series[0];
-                setInterval(function () {
-                    var x = (new Date()).getTime(), // current time
-                        y = Math.random();
-                    series.addPoint([x, y], true, true);
-                }, 1000);
-            }
-        }
+      type: 'spline'
     },
-
-    time: {
-        useUTC: false
-    },
-
     title: {
-        text: 'Live random data'
+      text: 'Live Data'
     },
-
     accessibility: {
-        announceNewData: {
-            enabled: true,
-            minAnnounceInterval: 15000,
-            announcementFormatter: function (allSeries, newSeries, newPoint) {
-                if (newPoint) {
-                    return 'New point added. Value: ' + newPoint.y;
-                }
-                return false;
-            }
+      announceNewData: {
+        enabled: true,
+        minAnnounceInterval: 15000,
+        announcementFormatter: function(allSeries, newSeries, newPoint) {
+          if (newPoint) {
+            return 'New point added. Value: ' + newPoint.y;
+          }
+          return false;
         }
+      }
     },
+    data: {
+      csvURL: urlInput.value,
+      enablePolling: pollingCheckbox.checked === true,
+      dataRefreshRate: parseInt(pollingInput.value, 10)
+    }
+  });
 
-    xAxis: {
-        type: 'datetime',
-        tickPixelInterval: 150
-    },
+  if (pollingInput.value < 1 || !pollingInput.value) {
+    pollingInput.value = 1;
+  }
+}
 
-    yAxis: {
-        title: {
-            text: 'Value'
-        },
-        plotLines: [{
-            value: 0,
-            width: 1,
-            color: '#808080'
-        }]
-    },
+urlInput.value = defaultData;
 
-    tooltip: {
-        headerFormat: '<b>{series.name}</b><br/>',
-        pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}'
-    },
+// We recreate instead of using chart update to make sure the loaded CSV
+// and such is completely gone.
+pollingCheckbox.onchange = urlInput.onchange = pollingInput.onchange = createChart;
 
-    legend: {
-        enabled: false
-    },
+// Create the chart
+createChart();
 
-    exporting: {
-        enabled: false
-    },
 
-    series: [{
-        name: 'Random data',
-        data: (function () {
-            // generate an array of random data
-            var data = [],
-                time = (new Date()).getTime(),
-                i;
 
-            for (i = -19; i <= 0; i += 1) {
-                data.push({
-                    x: time + i * 1000,
-                    y: Math.random()
-                });
-            }
-            return data;
-        }())
-    }]
-});				})(jQuery);
-			</script>
-							<a id="next-example" class="hidden-xs" title="Next (arrow right)" href="/demo/dynamic-click-to-add"><i class="fa fa-angle-right"></i></a>
-					</div>
+  //]]></script>
+
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: ""
+      }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+  </script>
+
+    <script>
+      let allLines = []
+
+      window.addEventListener("message", (message) => {
+        if (message.data.console){
+          let insert = document.querySelector("#insert")
+          allLines.push(message.data.console.payload)
+          insert.innerHTML = allLines.join(";\r")
+
+          let result = eval.call(null, message.data.console.payload)
+          if (result !== undefined){
+            console.log(result)
+          }
+        }
+      })
+    </script>
+
 </body>
 </html>
