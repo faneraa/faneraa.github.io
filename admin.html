@@ -1,261 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Live data from dynamic CSV</title>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-  <script
-    type="text/javascript"
-    src="/js/lib/dummy.js"
-    
-  ></script>
-
-    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
-
-
-  <style id="compiled-css" type="text/css">
-      .highcharts-figure, .highcharts-data-table table {
-    min-width: 360px; 
-    max-width: 800px;
-    margin: 1em auto;
-}
-
-.highcharts-data-table table {
-	font-family: Verdana, sans-serif;
-	border-collapse: collapse;
-	border: 1px solid #EBEBEB;
-	margin: 10px auto;
-	text-align: center;
-	width: 100%;
-	max-width: 500px;
-}
-.highcharts-data-table caption {
-    padding: 1em 0;
-    font-size: 1.2em;
-    color: #555;
-}
-.highcharts-data-table th {
-	font-weight: 600;
-    padding: 0.5em;
-}
-.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-    padding: 0.5em;
-}
-.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-    background: #f8f8f8;
-}
-.highcharts-data-table tr:hover {
-    background: #f1f7ff;
-}
-
-.ld-label {
-	width:200px;
-	display: inline-block;
-}
-
-.ld-url-input {
-	width: 500px; 
-}
-
-.ld-time-input {
-	width: 40px;
-}
-
-    /* EOS */
-  </style>
-
-  <script id="insert"></script>
-
-
-    <script>
-      const customConsole = (w) => {
-        const pushToConsole = (payload, type) => {
-          w.parent.postMessage({
-            console: {
-              payload: payload,
-              type:    type
-            }
-          }, "*")
-        }
-
-        w.onerror = (message, url, line, column) => {
-          // the line needs to correspond with the editor panel
-          // unfortunately this number needs to be altered every time this view is changed
-          line = line - 70
-          if (line < 0){
-            pushToConsole(message, "error")
-          } else {
-            pushToConsole(`[${line}:${column}] ${message}`, "error")
-          }
-        }
-
-        let console = (function(systemConsole){
-          return {
-            log: function(){
-              let args = Array.from(arguments)
-              pushToConsole(args, "log")
-              systemConsole.log.apply(this, args)
-            },
-            info: function(){
-              let args = Array.from(arguments)
-
-              pushToConsole(args, "info")
-              systemConsole.info.apply(this, args)
-            },
-            warn: function(){
-              let args = Array.from(arguments)
-              pushToConsole(args, "warn")
-              systemConsole.warn.apply(this, args)
-            },
-            error: function(){
-              let args = Array.from(arguments)
-              pushToConsole(args, "error")
-              systemConsole.error.apply(this, args)
-            },
-            system: function(){
-              let args = Array.from(arguments)
-              pushToConsole(args, "system")
-            }
-          }
-        }(window.console))
-
-        window.console = console
-
-        console.system("Running fiddle")
-      }
-
-      if (window.parent){
-        customConsole(window)
-      }
-    </script>
+	<title>Настройка графика</title>
+	<link rel="stylesheet" href="css/styles.css" type="text/css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300" type="text/css">
+    {% include "styles.html" %}
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
+
 <body>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	<div id="wrapper">
+        {% include "header.html" %}
 
-<figure class="highcharts-figure">
-    <div id="container"></div>
-    <p class="highcharts-description">
-		Datasets formatted in CSV or JSON can be fetched remotely using the
-		<code>data</code> module. This chart shows how a chart can also be
-		configured to poll against the remote source.
-    </p>
-</figure>
+		<nav>
+            <ul class="top-menu">
+                 <li><a href="/#/">HOME</a></li>
+                <li><a href="https://my.informatics.ru/">PARTNERS</a></li>
+                <li><a href="/#/">CONTACTS</a></li>
+                <li><a href="/login">LOGIN</a></li>
+                <li><a href="/registration">REGISTRATION</a></li>
+            </ul>
+        </nav>
+    </div>
 
-<div class="ld-row">
-	<label class="ld-label">
-		Enable Polling
-	</label>
-	<input type="checkbox" checked="checked" id="enablePolling"/>
-</div>
-<div class="ld-row">
-	<label class="ld-label">
-		Polling Time (Seconds)
-	</label>
-	<input class="ld-time-input" type="number" value="2" id="pollingTime"/>
-</div>
-<div class="ld-row">
-	<label class="ld-label">
-		CSV URL
-	</label>
-	<input class="ld-url-input" type="text" id="fetchURL"/>
-</div>
+    <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+              <form class="card p-2">
+                <div class="input-group">
 
+                </div>
+              </form>
+            </div>
 
+            <div class="col-md-8 order-md-1">
+              <h4 class="mb-3">  </h4>
+              <form class="needs-validation" novalidate="">
 
+                <label for="graphic_type">Type</label>
+                <select class="custom-select d-block w-100" id="graphic_type" required="">
+                  <option value="">Choose...</option>
+                  <option value="">slide Graphic</option>
 
-  <!-- TODO: Missing CoffeeScript 2 -->
+                </select>
 
-  <script type="text/javascript">//<![CDATA[
+                <div class="row">
+                    <form>
+                      <h1>Скользящий график</h1>
+                      <div class="col-md-6 mb-3">
+                        <label for="function">массив Function [i]</label>
+                        <input type="text" class="form-control" id="function" placeholder="" value="" required="">
+                        <h5>..., 1 1, 2 4, 3 9, 4 16, 5 25, ...</h5>
+                      </div>
 
+                        <div>
+                            <label for="len">lenght</label>
+                            <input type="number" class="form-control" id="len" placeholder="" value="" required="">
+                        </div>
 
-var defaultData = 'https://demo-live-data.highcharts.com/time-data.csv';
-var urlInput = document.getElementById('fetchURL');
-var pollingCheckbox = document.getElementById('enablePolling');
-var pollingInput = document.getElementById('pollingTime');
+                        <div>
+                            <label for="shift">shift</label>
+                            <input type="number" class="form-control" id="shift" placeholder="" value="" required="">
+                        </div>
 
-function createChart() {
-    Highcharts.chart('container', {
-        chart: {
-            type: 'spline'
-        },
-        title: {
-            text: 'Live Data'
-        },
-        accessibility: {
-            announceNewData: {
-                enabled: true,
-                minAnnounceInterval: 15000,
-                announcementFormatter: function (allSeries, newSeries, newPoint) {
-                    if (newPoint) {
-                        return 'New point added. Value: ' + newPoint.y;
-                    }
-                    return false;
-                }
-            }
-        },
-        data: {
-            csvURL: urlInput.value,
-            enablePolling: pollingCheckbox.checked === true,
-            dataRefreshRate: parseInt(pollingInput.value, 10)
-        }
-    });
+                        <div>
+                            <label for="delay">delay</label>
+                            <input type="number" class="form-control" id="delay" placeholder="" value="" required="">
+                        </div>
+                    </form>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
 
-    if (pollingInput.value < 1 || !pollingInput.value) {
-        pollingInput.value = 1;
-    }
-}
+                <a href = "/Graphics">Continue</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+    </section>
 
-urlInput.value = defaultData;
-
-// We recreate instead of using chart update to make sure the loaded CSV
-// and such is completely gone.
-pollingCheckbox.onchange = urlInput.onchange = pollingInput.onchange = createChart;
-
-// Create the chart
-createChart();
-
-
-
-  //]]></script>
-
-  <script>
-    // tell the embed parent frame the height of the content
-    if (window.parent && window.parent.parent){
-      window.parent.parent.postMessage(["resultsFrame", {
-        height: document.body.getBoundingClientRect().height,
-        slug: ""
-      }], "*")
-    }
-
-    // always overwrite window.name, in case users try to set it manually
-    window.name = "result"
-  </script>
-
-    <script>
-      let allLines = []
-
-      window.addEventListener("message", (message) => {
-        if (message.data.console){
-          let insert = document.querySelector("#insert")
-          allLines.push(message.data.console.payload)
-          insert.innerHTML = allLines.join(";\r")
-
-          let result = eval.call(null, message.data.console.payload)
-          if (result !== undefined){
-            console.log(result)
-          }
-        }
-      })
-    </script>
-
+    {% include "footer.html" %}
 </body>
 </html>
