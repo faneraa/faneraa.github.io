@@ -1,0 +1,58 @@
+pragma solidity >=0.7.0 <=0.7.4;
+
+contract Copyright{
+    string name;
+    string hash_sum;
+    
+    constructor(string memory en_name, string memory en_hash_sum){
+        name = en_name;
+        hash_sum = en_hash_sum;
+    }
+    
+    function getName() public view returns(string memory){
+        return name;
+    }
+    
+    function getHashSum() public view returns(string memory){
+        return hash_sum;
+    }
+}
+
+contract CopyrightCenter{
+    address owner;
+    
+    constructor (){
+        owner = msg.sender;
+    }
+    
+    address[] listOfCopyrights;
+    function addCopyright(address copyright_contract) public{
+        if (owner == msg.sender){
+            listOfCopyrights.push(copyright_contract);
+        }
+    }
+    
+    function getAllCopyrights() public view returns(address[] memory){
+        return listOfCopyrights;
+    }
+    
+    function getCopyrightName(uint24 i) public view returns(string memory){
+        Copyright tmp = Copyright(listOfCopyrights[i]);
+        return tmp.getName();
+    }
+    
+    function getHashSumByNum(uint24 i) public view returns(string memory){
+        Copyright tmp = Copyright(listOfCopyrights[i]);
+        return tmp.getHashSum();
+    }
+    
+    function getHashSumByName(string memory en_name) public view returns(string memory){
+        for(uint i=0;i < listOfCopyrights.length;i++){
+            Copyright tmp = Copyright(listOfCopyrights[i]);
+            if (keccak256(bytes(tmp.getName())) == keccak256(bytes(en_name))){
+                return tmp.getHashSum();
+            }
+        }
+        return "Invalid name";
+    }
+}
